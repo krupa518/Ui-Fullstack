@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+<div class="container">
+    <div class="boxStyle">
+    <h3>Register</h3>
+    <form novalidate name="frmRegister" #frmRegister="ngForm">
+    <div class="form-group">
+    <label>user name</label>
+    <div>
+    <input type="text" name="txtName" ngModel #txtName="ngModel"
+   class="form-control" required>
+    </div>
+    </div>
+    <div class="form-group">
+    <label>Mobile</label>
+    <div>
+    <input type="text" name="txtMobile" ngModel #txtmobile="ngModel"
+   class="form-control" required pattern="\+91[0-9]{10}">
+    </div>
+    </div>
+    <div class="form-group">
+    <button [disabled]="frmRegister.Invalid" class="btn btn-primary" >submit</button>
+    </div>
+    </form>
+    </div>
+    <div class="boxStyle">
+    <h3>Form State services</h3>
+    <dl>
+    <dt>pristine-no feild modifed</dt>
+    <dd>{{frmRegister.pristine}}</dd>
+    <dt>Dirty-atleast one field modifed</dt>
+    <dd>{{frmRegister.dirty}}</dd>
+    <dt>Invalid-Atleast one feild Invalid</dt>
+    <dd>{{frmRegister.invalid}}</dd>
+    <dt>Valid-All feild are valid</dt>
+    <dd>{{frmRegister.valid}}</dd>
+    <dt>Submitted-form submitted</dt>
+    <dd>{{frmRegister.submitted}}</dd>
+    </dl>
+    </div>
+   </div>
+</body>
+   </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> First AJAX Programme </title>
+    </head>
+
+    <!-- We need to add Jquery Library-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+
+    <style>
+
+        ul{
+            width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        li{
+            list-style: none;
+            border: 2px solid;
+            margin: 5px;
+            padding: 5px;
+        }
+
+    </style>
+    
+
+    <body>
+
+
+        <div>
+
+            <ul>
+
+                <li>
+                    Employee Name is : <span id="empname"></span>
+                </li>
+
+                <li>
+                    Employee Age is : <span id="age"></span>
+                </li>
+
+                <li>
+                    Employee Location is : <span id="empLocation"></span>
+                </li>
+            </ul>
+        </div>
+
+
+        <input type="button" value="Load Employee Data" onclick="makeajax()">
+
+
+        <script>
+
+            var empData={};
+
+            //By Making Call to AJAX we wil get empData
+
+            function dispalyData(){
+                $("#empname").text(empData.name);
+                $("#age").text(empData.age);
+                $("#empLocation").text(empData.location)
+            }
+
+
+            //Actual AJAX CALL
+
+            function makeajax(){
+
+                console.log("About to call AJAX to get Employee Data");
+
+                $.ajax( //This willl make an ajax call
+                    {
+
+                        url:"http://localhost:8080/employees/one",
+                        method:"GET",
+                        dataType:'JSON',
+                        async:false,
+                        success:(posRes)=>{
+                                console.log("AJAX CALL IS SUCESS");
+                                console.log(posRes);
+                                empData=posRes;
+                                dispalyData();
+
+                        },
+                        error:(errRes)=>{
+                            console.log("Error in Middle ware Call");
+                            console.log(errRes);
+                        }
+                    }
+
+                )
+
+            }
+        </script>
+        </body>
+</html>
